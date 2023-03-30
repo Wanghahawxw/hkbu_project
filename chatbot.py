@@ -27,8 +27,7 @@ def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hi! I'm a Chatbot. I can tell jokes, riddles, and recommend songs from Spotify. Use /joke, /riddle or /song to have fun!")
     
 def joke(update: Update, context: CallbackContext):
-    update.message.reply_text(random.choice(jokes))
-    
+    update.message.reply_text(random.choice(jokes))   
     
 def echo(update, context):
   reply_message = update.message.text.upper()
@@ -36,5 +35,8 @@ def echo(update, context):
   logging.info("context: " + str(context))
   context.bot.send_message(chat_id=update.effective_chat.id, text= reply_message)
 
+  dispatcher.add_handler(CommandHandler("start", start))
+  dispatcher.add_handler(CommandHandler("joke", joke))
+  
 if __name__ == '__main__':
   main()

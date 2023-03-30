@@ -23,7 +23,13 @@ def main():
   updater.start_polling()
   updater.idle()
 
-
+def start(update: Update, context: CallbackContext):
+    update.message.reply_text("Hi! I'm a Chatbot. I can tell jokes, riddles, and recommend songs from Spotify. Use /joke, /riddle or /song to have fun!")
+    
+def joke(update: Update, context: CallbackContext):
+    update.message.reply_text(random.choice(jokes))
+    
+    
 def echo(update, context):
   reply_message = update.message.text.upper()
   logging.info("Update: " + str(update))
